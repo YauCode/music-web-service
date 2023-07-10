@@ -33,7 +33,7 @@ const AuthModal = () => {
             title="Welcome Back"
             description='Test Description'
             isOpen={isOpen}
-            onChange={() => { onChange }}
+            onChange={onChange}
         >
             <Auth
                 supabaseClient={supabaseClient}
