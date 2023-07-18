@@ -1,6 +1,7 @@
 import { Figtree } from 'next/font/google'
 
 import Sidebar from '@/components/Sidebar'
+import getActiveProductsWithPrices from '@/actions/getActiveProductsWithPrices'
 import SupabaseProvider from '@/providers/SupabaseProvider'
 import UserProvider from '@/providers/UserProvider'
 import ModalProvider from '@/providers/ModalProvider'
@@ -26,6 +27,7 @@ export default async function RootLayout({
 }) {
 
   const userSongs = await getSongsByUserId();
+  const products = await getActiveProductsWithPrices();
 
   return (
     <html lang="en">
@@ -33,7 +35,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
-            <ModalProvider />
+            <ModalProvider products={products} />
             <Sidebar songs={userSongs}>
               {children}
             </Sidebar>
